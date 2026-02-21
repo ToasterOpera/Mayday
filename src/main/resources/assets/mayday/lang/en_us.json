@@ -1,14 +1,10 @@
 {
-  "itemGroup.examplemod": "Example Mod Tab",
-  "block.examplemod.example_block": "Example Block",
-  "item.examplemod.example_item": "Example Item",
+  "creativetab.mayday.mayday": "Mayday",
 
-  "examplemod.configuration.title": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml": "Example Mod Configs",
-  "examplemod.configuration.section.examplemod.common.toml.title": "Example Mod Configs",
-  "examplemod.configuration.items": "Item List",
-  "examplemod.configuration.logDirtBlock": "Log Dirt Block",
-  "examplemod.configuration.magicNumberIntroduction": "Magic Number Text",
-  "examplemod.configuration.magicNumber": "Magic Number",
-  "creativetab.mayday.mayday": "Mayday"
+  "item.mayday.wooden_crushing_hammer":"Wooden Crushing Hammer",
+  "item.mayday.stone_crushing_hammer":"Stone Crushing Hammer",
+  "item.mayday.iron_crushing_hammer":"Iron Crushing Hammer",
+  "item.mayday.gold_crushing_hammer":"Gold Crushing Hammer",
+  "item.mayday.diamond_crushing_hammer":"Diamond Crushing Hammer",
+  "item.mayday.netherite_crushing_hammer":"Netherite Crushing Hammer"
 }
