@@ -3,8 +3,15 @@ package net.toasteropera.mayday.datagen;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.BlockTags;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.tags.TagKey;
+import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Block;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.IConditionBuilder;
 import net.toasteropera.mayday.Mayday;
 import net.toasteropera.mayday.block.ModBlocks;
@@ -40,6 +47,15 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 //        oreSmelting(recipeOutput, BISMUTH_SMELTABLES, RecipeCategory.MISC, ModItems.BISMUTH.get(), 0.25f, 200, "bismuth");
 //        oreBlasting(recipeOutput, BISMUTH_SMELTABLES, RecipeCategory.MISC, ModItems.BISMUTH.get(), 0.25f, 100, "bismuth");
 
+        craftHammer(recipeOutput, ModItems.WOODEN_CRUSHING_HAMMER, ItemTags.PLANKS);
+        craftHammer(recipeOutput, ModItems.STONE_CRUSHING_HAMMER, ItemTags.STONE_CRAFTING_MATERIALS);
+        craftHammer(recipeOutput, ModItems.IRON_CRUSHING_HAMMER, Items.IRON_INGOT);
+        craftHammer(recipeOutput, ModItems.GOLD_CRUSHING_HAMMER, Items.GOLD_INGOT);
+        craftHammer(recipeOutput, ModItems.DIAMOND_CRUSHING_HAMMER, Items.DIAMOND);
+        craftHammer(recipeOutput, ModItems.NETHERITE_CRUSHING_HAMMER, Items.NETHERITE_INGOT);
+
+        netheriteSmithing(recipeOutput, ModItems.DIAMOND_CRUSHING_HAMMER.get(), RecipeCategory.MISC, ModItems.NETHERITE_CRUSHING_HAMMER.get());
+
     }
 
     protected static void oreSmelting(RecipeOutput recipeOutput, List<ItemLike> pIngredients, RecipeCategory pCategory, ItemLike pResult,
@@ -60,5 +76,29 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
             SimpleCookingRecipeBuilder.generic(Ingredient.of(itemlike), pCategory, pResult, pExperience, pCookingTime, pCookingSerializer, factory).group(pGroup).unlockedBy(getHasName(itemlike), has(itemlike))
                     .save(recipeOutput, Mayday.MOD_ID + ":" + getItemName(pResult) + pRecipeName + "_" + getItemName(itemlike));
         }
+    }
+
+    //Craft Hammer from item
+    protected static void craftHammer(RecipeOutput recipeOutput, ItemLike hammer, ItemLike material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, hammer)
+                .pattern("MSM")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('M', material)
+                .define('S', Items.STICK)
+                .unlockedBy("has_" + material.toString(), has(material))
+                .save(recipeOutput);
+    }
+
+    //Craft Hammer from tag
+    protected static void craftHammer(RecipeOutput recipeOutput, ItemLike hammer, TagKey<Item> material) {
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, hammer)
+                .pattern("MSM")
+                .pattern(" S ")
+                .pattern(" S ")
+                .define('M', material)
+                .define('S', Items.STICK)
+                .unlockedBy("has_" + material.toString(), has(material))
+                .save(recipeOutput);
     }
 }

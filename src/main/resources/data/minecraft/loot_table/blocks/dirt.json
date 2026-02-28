@@ -19,7 +19,7 @@
                 {
                   "condition": "minecraft:match_tool",
                   "predicate": {
-                    "tag": "mayday:crushing_hammers"
+                    "items": "#mayday:crushing_hammers"
                   }
                 }
               ]
